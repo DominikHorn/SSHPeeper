@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SSHPeeperApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  
+  var body: some Scene {
+    WindowGroup {
+      Text("Nothing to see in this window")
     }
+  }
 }
+

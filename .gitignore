@@ -1,0 +1,23 @@
+# Swift
+## Swift Package Manager
+.build
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode
+## User settings
+xcuserdata/
+.swiftpm
+
+## Gcc Patch
+/*.gcno
+
+# MacOS
+.DS_Store

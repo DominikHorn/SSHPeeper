@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SFSafeSymbols",
+        "repositoryURL": "https://github.com/piknotech/SFSafeSymbols",
+        "state": {
+          "branch": "stable",
+          "revision": "4fda3f8f7d4748c3fb9ea463dde5305b3b5512b5",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
