@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */; };
+		B4C0C7C4273693DB007C3BBD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C3273693DB007C3BBD /* ContentView.swift */; };
+		B4C0C7C6273693DE007C3BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C0C7C5273693DE007C3BBD /* Assets.xcassets */; };
+		B4C0C7C9273693DE007C3BBD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C0C7C8273693DE007C3BBD /* Preview Assets.xcassets */; };
+		B4C0C7D4273693DE007C3BBD /* SSHPeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7D3273693DE007C3BBD /* SSHPeeperTests.swift */; };
+		B4C0C7DE273693DE007C3BBD /* SSHPeeperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7DD273693DE007C3BBD /* SSHPeeperUITests.swift */; };
+		B4C0C7E0273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7DF273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4C0C7D0273693DE007C3BBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4C0C7B6273693DB007C3BBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4C0C7BD273693DB007C3BBD;
+			remoteInfo = SSHPeeper;
+		};
+		B4C0C7DA273693DE007C3BBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4C0C7B6273693DB007C3BBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4C0C7BD273693DB007C3BBD;
+			remoteInfo = SSHPeeper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHPeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperApp.swift; sourceTree = "<group>"; };
+		B4C0C7C3273693DB007C3BBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B4C0C7C5273693DE007C3BBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4C0C7C8273693DE007C3BBD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B4C0C7CA273693DE007C3BBD /* SSHPeeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSHPeeper.entitlements; sourceTree = "<group>"; };
+		B4C0C7CF273693DE007C3BBD /* SSHPeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHPeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4C0C7D3273693DE007C3BBD /* SSHPeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperTests.swift; sourceTree = "<group>"; };
+		B4C0C7D9273693DE007C3BBD /* SSHPeeperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHPeeperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4C0C7DD273693DE007C3BBD /* SSHPeeperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperUITests.swift; sourceTree = "<group>"; };
+		B4C0C7DF273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4C0C7BB273693DB007C3BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7CC273693DE007C3BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7D6273693DE007C3BBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4C0C7B5273693DB007C3BBD = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7C0273693DB007C3BBD /* SSHPeeper */,
+				B4C0C7D2273693DE007C3BBD /* SSHPeeperTests */,
+				B4C0C7DC273693DE007C3BBD /* SSHPeeperUITests */,
+				B4C0C7BF273693DB007C3BBD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4C0C7BF273693DB007C3BBD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */,
+				B4C0C7CF273693DE007C3BBD /* SSHPeeperTests.xctest */,
+				B4C0C7D9273693DE007C3BBD /* SSHPeeperUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4C0C7C0273693DB007C3BBD /* SSHPeeper */ = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */,
+				B4C0C7C3273693DB007C3BBD /* ContentView.swift */,
+				B4C0C7C5273693DE007C3BBD /* Assets.xcassets */,
+				B4C0C7CA273693DE007C3BBD /* SSHPeeper.entitlements */,
+				B4C0C7C7273693DE007C3BBD /* Preview Content */,
+			);
+			path = SSHPeeper;
+			sourceTree = "<group>";
+		};
+		B4C0C7C7273693DE007C3BBD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7C8273693DE007C3BBD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B4C0C7D2273693DE007C3BBD /* SSHPeeperTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7D3273693DE007C3BBD /* SSHPeeperTests.swift */,
+			);
+			path = SSHPeeperTests;
+			sourceTree = "<group>";
+		};
+		B4C0C7DC273693DE007C3BBD /* SSHPeeperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C0C7DD273693DE007C3BBD /* SSHPeeperUITests.swift */,
+				B4C0C7DF273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift */,
+			);
+			path = SSHPeeperUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4C0C7BD273693DB007C3BBD /* SSHPeeper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4C0C7E3273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeper" */;
+			buildPhases = (
+				B4C0C7BA273693DB007C3BBD /* Sources */,
+				B4C0C7BB273693DB007C3BBD /* Frameworks */,
+				B4C0C7BC273693DB007C3BBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSHPeeper;
+			productName = SSHPeeper;
+			productReference = B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4C0C7CE273693DE007C3BBD /* SSHPeeperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4C0C7E6273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeperTests" */;
+			buildPhases = (
+				B4C0C7CB273693DE007C3BBD /* Sources */,
+				B4C0C7CC273693DE007C3BBD /* Frameworks */,
+				B4C0C7CD273693DE007C3BBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4C0C7D1273693DE007C3BBD /* PBXTargetDependency */,
+			);
+			name = SSHPeeperTests;
+			productName = SSHPeeperTests;
+			productReference = B4C0C7CF273693DE007C3BBD /* SSHPeeperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B4C0C7D8273693DE007C3BBD /* SSHPeeperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4C0C7E9273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeperUITests" */;
+			buildPhases = (
+				B4C0C7D5273693DE007C3BBD /* Sources */,
+				B4C0C7D6273693DE007C3BBD /* Frameworks */,
+				B4C0C7D7273693DE007C3BBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4C0C7DB273693DE007C3BBD /* PBXTargetDependency */,
+			);
+			name = SSHPeeperUITests;
+			productName = SSHPeeperUITests;
+			productReference = B4C0C7D9273693DE007C3BBD /* SSHPeeperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4C0C7B6273693DB007C3BBD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					B4C0C7BD273693DB007C3BBD = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					B4C0C7CE273693DE007C3BBD = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B4C0C7BD273693DB007C3BBD;
+					};
+					B4C0C7D8273693DE007C3BBD = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B4C0C7BD273693DB007C3BBD;
+					};
+				};
+			};
+			buildConfigurationList = B4C0C7B9273693DB007C3BBD /* Build configuration list for PBXProject "SSHPeeper" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B4C0C7B5273693DB007C3BBD;
+			productRefGroup = B4C0C7BF273693DB007C3BBD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4C0C7BD273693DB007C3BBD /* SSHPeeper */,
+				B4C0C7CE273693DE007C3BBD /* SSHPeeperTests */,
+				B4C0C7D8273693DE007C3BBD /* SSHPeeperUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4C0C7BC273693DB007C3BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C0C7C9273693DE007C3BBD /* Preview Assets.xcassets in Resources */,
+				B4C0C7C6273693DE007C3BBD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7CD273693DE007C3BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7D7273693DE007C3BBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4C0C7BA273693DB007C3BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C0C7C4273693DB007C3BBD /* ContentView.swift in Sources */,
+				B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7CB273693DE007C3BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C0C7D4273693DE007C3BBD /* SSHPeeperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4C0C7D5273693DE007C3BBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C0C7E0273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift in Sources */,
+				B4C0C7DE273693DE007C3BBD /* SSHPeeperUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4C0C7D1273693DE007C3BBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4C0C7BD273693DB007C3BBD /* SSHPeeper */;
+			targetProxy = B4C0C7D0273693DE007C3BBD /* PBXContainerItemProxy */;
+		};
+		B4C0C7DB273693DE007C3BBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4C0C7BD273693DB007C3BBD /* SSHPeeper */;
+			targetProxy = B4C0C7DA273693DE007C3BBD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B4C0C7E1273693DE007C3BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B4C0C7E2273693DE007C3BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		B4C0C7E4273693DE007C3BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SSHPeeper/SSHPeeper.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SSHPeeper/Preview Content\"";
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B4C0C7E5273693DE007C3BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SSHPeeper/SSHPeeper.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SSHPeeper/Preview Content\"";
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B4C0C7E7273693DE007C3BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHPeeper.app/Contents/MacOS/SSHPeeper";
+			};
+			name = Debug;
+		};
+		B4C0C7E8273693DE007C3BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHPeeper.app/Contents/MacOS/SSHPeeper";
+			};
+			name = Release;
+		};
+		B4C0C7EA273693DE007C3BBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeperUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SSHPeeper;
+			};
+			name = Debug;
+		};
+		B4C0C7EB273693DE007C3BBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K66TW7FRN3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dhorn.SSHPeeperUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SSHPeeper;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4C0C7B9273693DB007C3BBD /* Build configuration list for PBXProject "SSHPeeper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4C0C7E1273693DE007C3BBD /* Debug */,
+				B4C0C7E2273693DE007C3BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4C0C7E3273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4C0C7E4273693DE007C3BBD /* Debug */,
+				B4C0C7E5273693DE007C3BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4C0C7E6273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4C0C7E7273693DE007C3BBD /* Debug */,
+				B4C0C7E8273693DE007C3BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4C0C7E9273693DE007C3BBD /* Build configuration list for PBXNativeTarget "SSHPeeperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4C0C7EA273693DE007C3BBD /* Debug */,
+				B4C0C7EB273693DE007C3BBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4C0C7B6273693DB007C3BBD /* Project object */;
+}
