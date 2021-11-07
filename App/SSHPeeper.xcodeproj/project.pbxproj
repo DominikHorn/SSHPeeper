@@ -16,6 +16,7 @@
 		B4C0C7E0273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7DF273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift */; };
 		B4C0C7EE27369464007C3BBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7ED27369464007C3BBD /* AppDelegate.swift */; };
 		B4C0C7F1273694D9007C3BBD /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */; };
+		B4C0C7F72736E722007C3BBD /* RemoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7F62736E722007C3BBD /* RemoteManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B4C0C7DF273693DE007C3BBD /* SSHPeeperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4C0C7ED27369464007C3BBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4C0C7F2273695F6007C3BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B4C0C7F62736E722007C3BBD /* RemoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				B4C0C7ED27369464007C3BBD /* AppDelegate.swift */,
+				B4C0C7F62736E722007C3BBD /* RemoteManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4C0C7EE27369464007C3BBD /* AppDelegate.swift in Sources */,
+				B4C0C7F72736E722007C3BBD /* RemoteManager.swift in Sources */,
 				B4C0C7C4273693DB007C3BBD /* ContentView.swift in Sources */,
 				B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */,
 			);
