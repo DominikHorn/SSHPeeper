@@ -13,7 +13,7 @@ final class InboundErrorHandler: ChannelInboundHandler {
   
   func errorCaught(context: ChannelHandlerContext, error: Error) {
     // TODO: proper error handling
-    print("Error in pipeline: \(error)")
+    print("Error in pipeline: \(error.localizedDescription)")
     context.close(promise: nil)
   }
 }

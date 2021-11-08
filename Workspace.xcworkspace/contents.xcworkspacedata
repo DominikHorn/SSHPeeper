@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:swift-nio-ssh">
+   </FileRef>
+   <FileRef
+      location = "group:App/../SSHClient">
+   </FileRef>
+   <FileRef
       location = "group:App/SSHPeeper.xcodeproj">
    </FileRef>
 </Workspace>

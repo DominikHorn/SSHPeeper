@@ -7,17 +7,17 @@ public actor SSHClient {
   private let group: MultiThreadedEventLoopGroup
   private let rootChannel: Channel
   
-  init(host: String, port: Int = 22) async throws {
+  // TODO: authentication?
+  public init(host: String, port: Int = 22, auth: Auth) async throws {
     group = .init(numberOfThreads: 1)
     let bootstrap = ClientBootstrap(group: group)
       .channelInitializer { channel in
-        let authDelegate = AuthDelegate()
-        
-        let clientConfig = SSHClientConfiguration(userAuthDelegate: authDelegate, serverAuthDelegate: authDelegate)
+        let clientConfig = SSHClientConfiguration(userAuthDelegate: auth, serverAuthDelegate: auth)
         let role = SSHConnectionRole.client(clientConfig)
         
         return channel.pipeline.addHandlers([
           NIOSSHHandler(role: role, allocator: channel.allocator, inboundChildChannelInitializer: nil),
+          InboundBannerHandler(),
           InboundErrorHandler()
         ])
       }
@@ -34,36 +34,28 @@ public actor SSHClient {
     }
   }
   
-  func execute(_ command: String) async throws -> (Int, String) {
+  public func execute(_ command: String) async throws -> (Int, String) {
     return try await withCheckedThrowingContinuation { continuation in
+      let parent = rootChannel
       do {
-        let childChannel: Channel = try rootChannel.pipeline.handler(type: NIOSSHHandler.self).flatMap { [unowned self] sshHandler in
-          let promise = rootChannel.eventLoop.makePromise(of: Channel.self)
-          sshHandler.createChannel(promise) { childChannel, channelType in
-            guard channelType == .session else {
-              return rootChannel.eventLoop.makeFailedFuture(ClientError.invalidChannelType)
-            }
-            
-            // TODO: implement
-            return childChannel.pipeline.addHandlers([])
-  //          return childChannel.pipeline.addHandlers([
-  //            ExecHandler(command: command)
-  //          ])
+        let childChannel: Channel = try parent.pipeline.handler(type: NIOSSHHandler.self).flatMap { sshHandler in
+          let promise = parent.eventLoop.makePromise(of: Channel.self)
+          sshHandler.createChannel(promise, channelType: .session) { childChannel, channelType in
+            childChannel.pipeline.addHandlers([
+              ExecHandler(command: command, completeContinuation: continuation),
+              InboundBannerHandler(),
+              InboundErrorHandler()
+            ])
           }
-          
           return promise.futureResult
         }.wait()
         
-        // TODO
+        // Wait for finish & return result
         try childChannel.closeFuture.wait()
-        //    let exitStatus = try! exitStatusPromise.futureResult.wait()
       } catch {
+        print(error.localizedDescription)
         continuation.resume(throwing: error)
       }
-      
-      
-      // TODO: implement
-      continuation.resume(returning: (0, ""))
     }
   }
   
@@ -75,5 +67,6 @@ public actor SSHClient {
   enum ClientError: Error {
     case invalidChannelType
     case invalidSelf
+    case ourCablesAreBroken
   }
 }
