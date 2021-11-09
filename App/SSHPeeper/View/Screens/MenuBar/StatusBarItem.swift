@@ -18,7 +18,6 @@ struct StatusBarItem: View {
           .frame(maxHeight: 15)
         
         Text(remoteManager.isUp ? "Running" : "Stopped")
-          .font(.system(size: 13, weight: .light))
       }
       .padding(.bottom, 2)
     }
