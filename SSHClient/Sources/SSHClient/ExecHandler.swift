@@ -276,24 +276,14 @@ final class ExecHandler: ChannelDuplexHandler {
       if let promise = self.completePromise {
         self.completePromise = nil
         
-        let global = DispatchQueue.global(qos: .background)
-        let channel = DispatchIO(type: .stream, fileDescriptor: outpipe.fileHandleForReading.fileDescriptor, queue: global) { (int) in
-          DispatchQueue.main.async {
-            print("Clean up  handler: \(int)")
-          }
-        }
-        channel.read(offset: 0, length: Int.max, queue: global) { (closed, dispatchData, error) in
-          // try to read data
-          guard let dispatchData = dispatchData else {
-            promise.fail(ExecError.unreadableOutput)
-            return
-          }
-          var data = Data()
-          for region in dispatchData.regions {
-            data.append(contentsOf: region.withUnsafeBytes({ Data($0)}))
-          }
-          
-          guard let output = String(bytes: data, encoding: .utf8) else {
+        /*
+         Pipe data only becomes readable some time in the future. Attempting
+         to read it synchronously now, using availableData, will result in a
+         deadlock.
+        */
+        let outpipe = outpipe
+        DispatchQueue.global(qos: .background).async {
+          guard let output = String(bytes: outpipe.fileHandleForReading.availableData, encoding: .utf8) else {
             promise.fail(ExecError.unreadableOutput)
             return
           }
