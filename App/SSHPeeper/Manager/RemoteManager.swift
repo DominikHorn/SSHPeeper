@@ -24,14 +24,15 @@ class RemoteManager: ObservableObject {
    ssh-keygen -i -m PKCS8 -f public-key.pem
    ```
    */
-  
   private let targetProcessName: String
+  private let refreshRate: RefreshRate
   private let auth: AuthData
   private var client: SSHClient? = nil
   
-  init(username: String, host: String, targetProcessName: String, port: Int = 22) throws {
+  init(username: String, host: String, targetProcessName: String, refreshRate: RefreshRate, port: Int = 22) throws {
     self.targetProcessName = targetProcessName
     self.auth = try AuthData(username: username)
+    self.refreshRate = refreshRate
     
     Task {
       do {

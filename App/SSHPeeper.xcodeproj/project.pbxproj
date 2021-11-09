@@ -15,6 +15,7 @@
 		B4952DC3273AE1CD00C3EB84 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */; };
 		B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */; };
 		B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */; };
+		B49BF0FF273B13BD00B36329 /* RefreshRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FE273B13BD00B36329 /* RefreshRate.swift */; };
 		B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */; };
 		B4C0C7C4273693DB007C3BBD /* RemoteDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C3273693DB007C3BBD /* RemoteDataScreen.swift */; };
 		B4C0C7C6273693DE007C3BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C0C7C5273693DE007C3BBD /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowIdentifier.swift; sourceTree = "<group>"; };
+		B49BF0FE273B13BD00B36329 /* RefreshRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshRate.swift; sourceTree = "<group>"; };
 		B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHPeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperApp.swift; sourceTree = "<group>"; };
 		B4C0C7C3273693DB007C3BBD /* RemoteDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataScreen.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				B433A08927393B2C003F89F8 /* GenericPasswordConvertible.swift */,
 				B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */,
 				B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */,
+				B49BF0FE273B13BD00B36329 /* RefreshRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */,
 				B4C0C7C4273693DB007C3BBD /* RemoteDataScreen.swift in Sources */,
 				B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */,
+				B49BF0FF273B13BD00B36329 /* RefreshRate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

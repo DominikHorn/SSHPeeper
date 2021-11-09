@@ -13,4 +13,5 @@ enum DefaultsKeys {
   static let port = "port"
   
   static let targetProcessName = "targetProcessName"
+  static let refreshRate = "refreshRate"
 }

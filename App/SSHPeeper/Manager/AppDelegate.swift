@@ -35,7 +35,8 @@ extension AppDelegate {
           !username.isEmpty,
           let host = UserDefaults.standard.string(forKey: DefaultsKeys.host),
           !host.isEmpty,
-          let targetProcessName = UserDefaults.standard.string(forKey: DefaultsKeys.targetProcessName)
+          let targetProcessName = UserDefaults.standard.string(forKey: DefaultsKeys.targetProcessName),
+          let refreshRate = RefreshRate(rawValue: UserDefaults.standard.string(forKey: DefaultsKeys.refreshRate) ?? "")
     else {
       return
     }
@@ -52,7 +53,14 @@ extension AppDelegate {
     
     Task {
       do {
-        let remoteManager = try await RemoteManager(username: username, host: host, targetProcessName: targetProcessName, port: port)
+        // recreate connection
+        let remoteManager = try await RemoteManager(
+          username: username,
+          host: host,
+          targetProcessName: targetProcessName,
+          refreshRate: refreshRate,
+          port: port
+        )
     
         await MainActor.run {
           // Create and setup status bar item ('button in status bar to toggle popover')
