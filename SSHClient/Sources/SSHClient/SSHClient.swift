@@ -3,12 +3,12 @@ import Foundation
 import NIO
 import NIOSSH
 
-public actor SSHClient {
-  private let delegate: SSHClientDelegate
+public actor SSHClient<T: SSHClientDelegate> {
+  private weak var delegate: T?
   private let group: MultiThreadedEventLoopGroup
   private let rootChannel: Channel
   
-  public init(host: String, port: Int = 22, auth: Auth, delegate: SSHClientDelegate) async throws {
+  public init(host: String, port: Int = 22, auth: Auth, delegate: T? = nil) async throws {
     self.delegate = delegate
     self.group = .init(numberOfThreads: 1)
     
@@ -19,7 +19,7 @@ public actor SSHClient {
         
         return channel.pipeline.addHandlers([
           NIOSSHHandler(role: role, allocator: channel.allocator, inboundChildChannelInitializer: nil),
-          InboundEventHandler(onUserBanner: delegate.onBanner(message:), onError: delegate.onError(error:))
+          InboundEventHandler(delegate: delegate)
         ])
       }
       .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
@@ -46,7 +46,7 @@ public actor SSHClient {
           sshHandler.createChannel(promise, channelType: .session) { childChannel, channelType in
             childChannel.pipeline.addHandlers([
               ExecHandler(command: command, completePromise: exitStatusPromise),
-              InboundEventHandler(onUserBanner: delegate.onBanner(message:), onError: delegate.onError(error:))
+              InboundEventHandler(delegate: delegate)
             ])
           }
           return promise.futureResult

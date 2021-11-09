@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol SSHClientDelegate {
+public protocol SSHClientDelegate: AnyObject {
   func onBanner(message: String) async -> Void
   func onError(error: Error) async -> Void
 }

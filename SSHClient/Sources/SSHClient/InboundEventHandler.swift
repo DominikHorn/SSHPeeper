@@ -9,15 +9,13 @@ import Foundation
 import NIO
 import NIOSSH
 
-final class InboundEventHandler: ChannelInboundHandler {
+final class InboundEventHandler<T: SSHClientDelegate>: ChannelInboundHandler {
   typealias InboundIn = Any
   
-  private let onUserBanner: (String) async -> Void
-  private let onError: (Error) async -> Void
+  private weak var delegate: T?
   
-  init(onUserBanner: @escaping (String) async -> Void, onError: @escaping (Error) async -> Void) {
-    self.onUserBanner = onUserBanner
-    self.onError = onError
+  init(delegate: T? = nil) {
+    self.delegate = delegate
   }
   
   func userInboundEventTriggered(context: ChannelHandlerContext, event: Any) {
@@ -25,7 +23,7 @@ final class InboundEventHandler: ChannelInboundHandler {
       Task {
         // Filter control characters as advised in RFC 4252
         let filteredMessage = event.message.trimmingCharacters(in: .controlCharacters)
-        await onUserBanner(filteredMessage)
+        await delegate?.onBanner(message: filteredMessage)
       }
     }
   }
@@ -33,7 +31,7 @@ final class InboundEventHandler: ChannelInboundHandler {
   func errorCaught(context: ChannelHandlerContext, error: Error) {
     context.close(promise: nil)
     Task {
-      await onError(error)
+      await delegate?.onError(error: error)
     }
   }
 }
