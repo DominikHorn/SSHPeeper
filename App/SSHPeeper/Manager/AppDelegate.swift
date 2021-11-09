@@ -31,19 +31,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     
     // TODO: tmp
-    Task {
-      do {
-        let auth = try AuthData(username: "dominik")
-        let client = try await SSHClient(host: "mcgraw.rm.cab", port: 54245, auth: auth.sshAuth)
-        let (code, text) = try await client.execute("ls -al")
-        print(text)
-        print("process exited \(code)")
-      } catch {
-        print("Received: \(error.localizedDescription)")
+    class SSHDelegate: SSHClientDelegate {
+      func onBanner(message: String) {
+        // TODO: proper handling
+        print(message)
       }
       
-      DispatchQueue.main.async {
-        NSApplication.shared.terminate(nil)
+      func onError(error: Error) {
+        print(error)
+      }
+    }
+    
+    Task {
+      do {
+        let delegate = SSHDelegate()
+        let auth = try AuthData(username: "dominik")
+        let client = try await SSHClient(host: "mcgraw.rm.cab", port: 54245, auth: auth.sshAuth, delegate: delegate)
+        let (code, text) = try await client.execute("ps -u dominik")
+    
+        print(text)
+        print("process exited: \(code)")
+      } catch {
+        print("Received: \(error.localizedDescription)")
       }
     }
 

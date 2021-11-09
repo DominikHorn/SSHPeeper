@@ -213,6 +213,7 @@
  */
 
 import Foundation
+import System
 import NIO
 import NIOSSH
 
@@ -224,11 +225,13 @@ final class ExecHandler: ChannelDuplexHandler {
   typealias OutboundIn = ByteBuffer
   
   private let command: String
-  private var completeContinuation: CheckedContinuation<(Int, String), Error>?
+  private var completePromise: EventLoopPromise<(Int, String)>?
   
-  init(command: String, completeContinuation: CheckedContinuation<(Int, String), Error>) {
+  private var outpipe = Pipe()
+  
+  init(command: String, completePromise: EventLoopPromise<(Int, String)>?) {
     self.command = command
-    self.completeContinuation = completeContinuation
+    self.completePromise = completePromise
   }
   
   func handlerAdded(context: ChannelHandlerContext) {
@@ -242,6 +245,7 @@ final class ExecHandler: ChannelDuplexHandler {
     let (ours, theirs) = GlueHandler.matchedPair()
     
     // Sadly we have to kick off to a background thread to bootstrap the pipe channel.
+    let outpipe = self.outpipe
     let bootstrap = NIOPipeBootstrap(group: context.eventLoop)
     context.channel.pipeline.addHandler(ours, position: .last).whenSuccess { _ in
       DispatchQueue(label: "pipe-bootstrap").async {
@@ -250,7 +254,7 @@ final class ExecHandler: ChannelDuplexHandler {
           .channelInitializer { channel in
             channel.pipeline.addHandler(theirs)
           }
-          .withPipes(inputDescriptor: 0, outputDescriptor: 1).whenComplete { result in
+          .withPipes(inputDescriptor: STDIN_FILENO, outputDescriptor: outpipe.fileHandleForWriting.fileDescriptor).whenComplete { result in
             switch result {
             case .success:
               // We need to exec a thing.
@@ -269,10 +273,33 @@ final class ExecHandler: ChannelDuplexHandler {
   func userInboundEventTriggered(context: ChannelHandlerContext, event: Any) {
     switch event {
     case let event as SSHChannelRequestEvent.ExitStatus:
-      if let continuation = self.completeContinuation {
-        self.completeContinuation = nil
-        // TODO: how to get output from command? See ".withPipes" from above
-        continuation.resume(returning: (event.exitStatus, "OBTAINING OUTPUT UNIMPLEMENTED"))
+      if let promise = self.completePromise {
+        self.completePromise = nil
+        
+        let global = DispatchQueue.global(qos: .background)
+        let channel = DispatchIO(type: .stream, fileDescriptor: outpipe.fileHandleForReading.fileDescriptor, queue: global) { (int) in
+          DispatchQueue.main.async {
+            print("Clean up  handler: \(int)")
+          }
+        }
+        channel.read(offset: 0, length: Int.max, queue: global) { (closed, dispatchData, error) in
+          // try to read data
+          guard let dispatchData = dispatchData else {
+            promise.fail(ExecError.unreadableOutput)
+            return
+          }
+          var data = Data()
+          for region in dispatchData.regions {
+            data.append(contentsOf: region.withUnsafeBytes({ Data($0)}))
+          }
+          
+          guard let output = String(bytes: data, encoding: .utf8) else {
+            promise.fail(ExecError.unreadableOutput)
+            return
+          }
+          
+          promise.succeed((event.exitStatus, output))
+        }
       }
       
     default:
@@ -281,9 +308,9 @@ final class ExecHandler: ChannelDuplexHandler {
   }
   
   func handlerRemoved(context: ChannelHandlerContext) {
-    if let continuation = self.completeContinuation {
-      self.completeContinuation = nil
-      continuation.resume(throwing: ExecError.execFailed)
+    if let promise = self.completePromise {
+      self.completePromise = nil
+      promise.fail(ExecError.execFailed)
     }
   }
   
@@ -319,5 +346,6 @@ final class ExecHandler: ChannelDuplexHandler {
   
   enum ExecError: Error {
     case execFailed
+    case unreadableOutput
   }
 }
