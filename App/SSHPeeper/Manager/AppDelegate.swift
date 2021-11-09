@@ -16,20 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private var popover: NSPopover?
   private var statusBarItem: NSStatusItem?
   
-  func onConfirmSetup() {
-    // NSApplication.shared.keyWindow?.close()
-    configureViews()
+  func applicationDidFinishLaunching(_ notification: Notification) {
+    applyConfiguration()
   }
   
-  func applicationDidFinishLaunching(_ notification: Notification) {
-    configureViews()
-  }
-}
-
-// MARK: - View Management
-extension AppDelegate {
-  /// Idempotent method that configures this app's views depending on the current app state
-  private func configureViews() {
+  /// Idempotent method that configures this app depending on the current app state
+  func applyConfiguration() {
     // Enforce that we are correctly setup
     guard let username = UserDefaults.standard.string(forKey: DefaultsKeys.username),
           !username.isEmpty,
@@ -48,9 +40,6 @@ extension AppDelegate {
       window.close()
     }
     
-    // Never create status bar item twice
-    guard statusBarItem == nil else { return }
-    
     Task {
       do {
         // recreate connection
@@ -64,20 +53,27 @@ extension AppDelegate {
     
         await MainActor.run {
           // Create and setup status bar item ('button in status bar to toggle popover')
-          let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-          if let button = statusBarItem.button {
-            // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
-            button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "Open SSHPeeper's menubar popover")
-            button.action = #selector(togglePopover(_:))
+          if statusBarItem == nil {
+            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+            if let button = statusBarItem.button {
+              // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
+              // that displays the current remote data state at a glance
+              button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "Open SSHPeeper's menubar popover")
+              button.action = #selector(togglePopover(_:))
+            }
+            self.statusBarItem = statusBarItem
           }
-          self.statusBarItem = statusBarItem
           
           // Create and setup popover ('content ui')
-          let popover = NSPopover()
-          popover.behavior = .transient
-          popover.contentSize = NSSize(width: 400, height: 400)
-          popover.contentViewController = NSHostingController(rootView: RemoteDataScreen(remoteManager: remoteManager))
-          self.popover = popover
+          if popover == nil {
+            let popover = NSPopover()
+            popover.behavior = .transient
+            popover.contentSize = NSSize(width: 400, height: 400)
+            self.popover = popover
+          }
+          
+          // recreate remote data screen
+          self.popover?.contentViewController = NSHostingController(rootView: RemoteDataScreen(remoteManager: remoteManager))
         }
       } catch {
         // TODO: properly handle this by displaying an error alert or something
