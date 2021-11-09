@@ -12,6 +12,7 @@
 		B433A08E27393E0F003F89F8 /* NativeKeychainStoreable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */; };
 		B44BFFE0273842DE000E6366 /* SSHClient in Frameworks */ = {isa = PBXBuildFile; productRef = B44BFFDF273842DE000E6366 /* SSHClient */; };
 		B44BFFED273857DC000E6366 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44BFFEC273857DC000E6366 /* AuthData.swift */; };
+		B4871A13273B198A0013CBB2 /* StatusBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A12273B198A0013CBB2 /* StatusBarItem.swift */; };
 		B4952DC3273AE1CD00C3EB84 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */; };
 		B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */; };
 		B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */; };
@@ -50,6 +51,7 @@
 		B433A08B27393DD5003F89F8 /* AuthData+Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthData+Keychain.swift"; sourceTree = "<group>"; };
 		B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKeychainStoreable.swift; sourceTree = "<group>"; };
 		B44BFFEC273857DC000E6366 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
+		B4871A12273B198A0013CBB2 /* StatusBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarItem.swift; sourceTree = "<group>"; };
 		B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowIdentifier.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B4871A11273B19800013CBB2 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				B4871A12273B198A0013CBB2 /* StatusBarItem.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
 		B4952DC1273AE1BD00C3EB84 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +147,7 @@
 		B49BF0F9273B013F00B36329 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4871A11273B19800013CBB2 /* MenuBar */,
 				B49BF0FB273B014E00B36329 /* Setup */,
 				B49BF0FA273B014700B36329 /* RemoteData */,
 			);
@@ -377,6 +388,7 @@
 				B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */,
 				B4C0C7C4273693DB007C3BBD /* RemoteDataScreen.swift in Sources */,
 				B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */,
+				B4871A13273B198A0013CBB2 /* StatusBarItem.swift in Sources */,
 				B49BF0FF273B13BD00B36329 /* RefreshRate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

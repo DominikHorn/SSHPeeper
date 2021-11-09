@@ -54,14 +54,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         await MainActor.run {
           // Create and setup status bar item ('button in status bar to toggle popover')
           if statusBarItem == nil {
-            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-            if let button = statusBarItem.button {
-              // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
-              // that displays the current remote data state at a glance
-              button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "Open SSHPeeper's menubar popover")
-              button.action = #selector(togglePopover(_:))
-            }
+            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+            statusBarItem.length = 75
             self.statusBarItem = statusBarItem
+          }
+          
+          if let length = statusBarItem?.length, let button = statusBarItem?.button {
+            button.action = #selector(togglePopover(_:))
+            
+            button.subviews.forEach { $0.removeFromSuperview() }
+            
+            let view = NSHostingView(rootView: StatusBarItem(remoteManager: remoteManager))
+            view.translatesAutoresizingMaskIntoConstraints = false
+            button.addSubview(view)
+            view.widthAnchor.constraint(equalToConstant: length).isActive = true
+            view.heightAnchor.constraint(equalToConstant: NSApplication.shared.mainMenu?.menuBarHeight ?? 22).isActive = true
           }
           
           // Create and setup popover ('content ui')
