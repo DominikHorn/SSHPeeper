@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private var statusBarItem: NSStatusItem?
   
   func onConfirmSetup() {
+    // NSApplication.shared.keyWindow?.close()
     configureViews()
   }
   
@@ -40,10 +41,14 @@ extension AppDelegate {
     }
     let port = UserDefaults.standard.integer(forKey: DefaultsKeys.port)
     
-    // Close main window (only shown on user request)
-    if let window = NSApplication.shared.windows.first {
+    // Close all settings windows (if exist)
+    NSApplication.shared.windows.forEach { window in
+      guard let id = window.identifier, id.rawValue.contains(WindowIdentifier.settings.rawValue) else { return }
       window.close()
     }
+    
+    // Never create status bar item twice
+    guard statusBarItem == nil else { return }
     
     Task {
       do {

@@ -12,7 +12,7 @@ struct SSHPeeperApp: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
   
   var body: some Scene {
-    WindowGroup {
+    WindowGroup(id: WindowIdentifier.settings.rawValue) {
       SetupScreen(onConfirm: delegate.onConfirmSetup)
         // activate existing window if exists
         .handlesExternalEvents(preferring: [WindowIdentifier.settings.rawValue], allowing: ["*"])
