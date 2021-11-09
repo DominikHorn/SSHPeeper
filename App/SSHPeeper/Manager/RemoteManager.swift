@@ -18,6 +18,8 @@ class RemoteManager: ObservableObject {
   @Published var bannerMessage: String? = nil
   @Published var error: RemoteError? = nil
   
+  @Published var refreshing = false
+  
   /* TODO: automate public key retrieval: (currently manual using)
    ```swift
    print(auth.privateKey.publicKey.pemRepresentation)
@@ -57,6 +59,7 @@ class RemoteManager: ObservableObject {
     // we can't refresh without a client
     guard let client = client else { return }
     
+    refreshing = true
     do {
       // TODO(dominik): don't hardcode requests
       let (code, psOut) = try await client.execute("ps -u \(auth.username) | grep \(targetProcessName)")
@@ -66,6 +69,7 @@ class RemoteManager: ObservableObject {
     } catch {
       display(error: error)
     }
+    refreshing = false
   }
   
   internal func display(banner: String) {

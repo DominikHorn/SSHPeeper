@@ -43,6 +43,13 @@ struct RemoteDataScreen: View {
       } else {
         VStack {
           HStack {
+            if remoteManager.refreshing {
+              ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+                .scaleEffect(0.5)
+                .frame(width: 20, height: 20)
+            }
+            
             Spacer()
             
             Button(action: { Task { await remoteManager.refresh() } }) {
