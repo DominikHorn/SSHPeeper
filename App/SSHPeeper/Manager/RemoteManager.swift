@@ -9,6 +9,7 @@ import Foundation
 import SSHClient
 import SwiftUI
 import NIOPosix
+import Combine
 
 @MainActor
 class RemoteManager: ObservableObject {
@@ -17,7 +18,6 @@ class RemoteManager: ObservableObject {
   @Published var bannerMessage: String? = nil
   @Published var error: RemoteError? = nil
   
-  
   /* TODO: automate public key retrieval: (currently manual using)
    ```swift
    print(auth.privateKey.publicKey.pemRepresentation)
@@ -25,19 +25,27 @@ class RemoteManager: ObservableObject {
    ```
    */
   private let targetProcessName: String
-  private let refreshRate: RefreshRate
   private let auth: AuthData
-  private var client: SSHClient? = nil
+  private var client: SSHClient<RemoteManager>? = nil
+  
+  private var timer: AnyCancellable? = nil
   
   init(username: String, host: String, targetProcessName: String, refreshRate: RefreshRate, port: Int = 22) throws {
     self.targetProcessName = targetProcessName
     self.auth = try AuthData(username: username)
-    self.refreshRate = refreshRate
     
     Task {
       do {
         self.client = try await .init(host: host, port: port, auth: auth.sshAuth, delegate: self)
         await refresh()
+        
+        timer = Timer.publish(every: refreshRate.seconds, on: .main, in: .default)
+          .autoconnect()
+          .sink { [unowned self] _ in
+            Task {
+              await self.refresh()
+            }
+          }
       } catch {
         display(error: error)
       }
@@ -50,7 +58,7 @@ class RemoteManager: ObservableObject {
     guard let client = client else { return }
     
     do {
-      // TODO: don't hardcode request
+      // TODO(dominik): don't hardcode requests
       let (code, psOut) = try await client.execute("ps -u \(auth.username) | grep \(targetProcessName)")
       
       self.isUp = code == 0
