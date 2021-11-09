@@ -14,7 +14,11 @@ struct SSHPeeperApp: App {
   var body: some Scene {
     WindowGroup {
       SetupScreen(onConfirm: delegate.onConfirmSetup)
+        // activate existing window if exists
+        .handlesExternalEvents(preferring: [WindowIdentifier.settings.rawValue], allowing: ["*"])
     }
+    // create new window if it does not exist
+    .handlesExternalEvents(matching: [WindowIdentifier.settings.rawValue])
   }
 }
 

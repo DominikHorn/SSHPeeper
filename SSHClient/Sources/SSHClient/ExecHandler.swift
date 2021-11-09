@@ -227,7 +227,7 @@ final class ExecHandler: ChannelDuplexHandler {
   private let command: String
   private var completePromise: EventLoopPromise<(Int, String)>?
   
-  private var outpipe = Pipe()
+  private let outpipe = Pipe()
   
   init(command: String, completePromise: EventLoopPromise<(Int, String)>?) {
     self.command = command
@@ -244,8 +244,9 @@ final class ExecHandler: ChannelDuplexHandler {
     // We need to set up a pipe channel and glue it to this. This will control our I/O.
     let (ours, theirs) = GlueHandler.matchedPair()
     
+    let outpipe = outpipe
+    
     // Sadly we have to kick off to a background thread to bootstrap the pipe channel.
-    let outpipe = self.outpipe
     let bootstrap = NIOPipeBootstrap(group: context.eventLoop)
     context.channel.pipeline.addHandler(ours, position: .last).whenSuccess { _ in
       DispatchQueue(label: "pipe-bootstrap").async {
@@ -254,15 +255,17 @@ final class ExecHandler: ChannelDuplexHandler {
           .channelInitializer { channel in
             channel.pipeline.addHandler(theirs)
           }
-          .withPipes(inputDescriptor: STDIN_FILENO, outputDescriptor: outpipe.fileHandleForWriting.fileDescriptor).whenComplete { result in
+          .withInputOutputDescriptor(outpipe.fileHandleForWriting.fileDescriptor).whenComplete { result in
             switch result {
             case .success:
               // We need to exec a thing.
               let execRequest = SSHChannelRequestEvent.ExecRequest(command: self.command, wantReply: false)
-              context.triggerUserOutboundEvent(execRequest).whenFailure { _ in
+              context.triggerUserOutboundEvent(execRequest).whenFailure { error in
                 context.close(promise: nil)
               }
             case .failure(let error):
+              try? outpipe.fileHandleForWriting.close()
+              try? outpipe.fileHandleForReading.close()
               context.fireErrorCaught(error)
             }
           }
@@ -282,7 +285,7 @@ final class ExecHandler: ChannelDuplexHandler {
          deadlock.
         */
         let outpipe = outpipe
-        DispatchQueue.global(qos: .background).async {
+        context.channel.closeFuture.whenSuccess {
           guard let output = String(bytes: outpipe.fileHandleForReading.availableData, encoding: .utf8) else {
             promise.fail(ExecError.unreadableOutput)
             return

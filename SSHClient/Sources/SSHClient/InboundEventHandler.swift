@@ -31,8 +31,8 @@ final class InboundEventHandler: ChannelInboundHandler {
   }
   
   func errorCaught(context: ChannelHandlerContext, error: Error) {
+    context.close(promise: nil)
     Task {
-      context.close(promise: nil)
       await onError(error)
     }
   }
