@@ -64,7 +64,8 @@ public actor SSHClient {
   }
   
   deinit {
-    // TODO: gracefully disconnect
+    // gracefully disconnect
+    try? rootChannel.close().wait()
     try! group.syncShutdownGracefully()
   }
   
