@@ -14,12 +14,12 @@ enum RefreshRate: String, CaseIterable, Identifiable {
   
   var id: String { self.rawValue }
   
-  var seconds: Int {
+  var seconds: Double {
     switch self {
     case .low:
-      return 120
-    case .medium:
       return 30
+    case .medium:
+      return 10
     case .high:
       return 5
     }
