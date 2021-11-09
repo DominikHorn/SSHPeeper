@@ -9,6 +9,6 @@ import Foundation
 
 struct ProcessStats {
   var timestamp: Date = Date()
-  var cpuPercent: Float = 0.0
-  var memoryPercent: Float = 0.0
+  var cpuPercent: Double = 0.0
+  var memoryPercent: Double = 0.0
 }

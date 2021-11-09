@@ -76,8 +76,8 @@ class RemoteManager: ObservableObject {
               let lineSubstr = psOut.split(separator: "\n").first else { return }
       let stats = String(lineSubstr).split(separator: " ")
       guard stats.count >= 3,
-            let cpuRaw = Float(String(stats[0])),
-            let memRaw = Float(String(stats[1])),
+            let cpuRaw = Double(String(stats[0])),
+            let memRaw = Double(String(stats[1])),
             let runtimeRaw = Int(String(stats[2])) else { return }
       
       processRuntimeInSeconds = runtimeRaw

@@ -67,11 +67,8 @@ struct RemoteDataScreen: View {
           
           Spacer()
           
-          if let output = remoteManager.output {
-            Text(output)
-              .font(.system(size: 13).monospaced())
-              .padding()
-          }
+          CPUUsageView(stats: $remoteManager.processStats)
+          MemUsageView(stats: $remoteManager.processStats)
           
           Spacer()
         }
