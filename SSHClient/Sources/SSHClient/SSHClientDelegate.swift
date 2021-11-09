@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol SSHClientDelegate {
-  func onBanner(message: String) -> Void
-  func onError(error: Error) -> Void
+  func onBanner(message: String) async -> Void
+  func onError(error: Error) async -> Void
 }

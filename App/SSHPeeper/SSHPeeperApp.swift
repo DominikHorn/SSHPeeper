@@ -13,7 +13,7 @@ struct SSHPeeperApp: App {
   
   var body: some Scene {
     WindowGroup {
-      Text("Nothing to see in this window")
+      SetupScreen(onConfirm: delegate.onConfirmSetup)
     }
   }
 }

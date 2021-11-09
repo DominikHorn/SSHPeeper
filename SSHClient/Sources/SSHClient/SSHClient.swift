@@ -8,7 +8,6 @@ public actor SSHClient {
   private let group: MultiThreadedEventLoopGroup
   private let rootChannel: Channel
   
-  // TODO: authentication?
   public init(host: String, port: Int = 22, auth: Auth, delegate: SSHClientDelegate) async throws {
     self.delegate = delegate
     self.group = .init(numberOfThreads: 1)

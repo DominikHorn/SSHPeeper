@@ -16,64 +16,64 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private var popover: NSPopover?
   private var statusBarItem: NSStatusItem?
   
+  func onConfirmSetup() {
+    configureViews()
+  }
+  
   func applicationDidFinishLaunching(_ notification: Notification) {
-    // Close main app window TODO: only do this once app is setup!
+    configureViews()
+  }
+}
+
+// MARK: - View Management
+extension AppDelegate {
+  /// Idempotent method that configures this app's views depending on the current app state
+  private func configureViews() {
+    // Enforce that we are correctly setup
+    guard let username = UserDefaults.standard.string(forKey: DefaultsKeys.username),
+          !username.isEmpty,
+          let host = UserDefaults.standard.string(forKey: DefaultsKeys.host),
+          !host.isEmpty,
+          let targetProcessName = UserDefaults.standard.string(forKey: DefaultsKeys.targetProcessName)
+    else {
+      return
+    }
+    let port = UserDefaults.standard.integer(forKey: DefaultsKeys.port)
+    
+    // Close main window (only shown on user request)
     if let window = NSApplication.shared.windows.first {
       window.close()
-    }
-
-    // TODO: to get public key that can be added to server, write pem & convert using
-    
-    /* ```swift
-        print(auth.privateKey.publicKey.pemRepresentation)
-        ssh-keygen -i -m PKCS8 -f public-key.pem
-       ```
-     */
-    
-    // TODO: tmp
-    class SSHDelegate: SSHClientDelegate {
-      func onBanner(message: String) {
-        // TODO: proper handling
-        print(message)
-      }
-      
-      func onError(error: Error) {
-        print(error)
-      }
     }
     
     Task {
       do {
-        let delegate = SSHDelegate()
-        let auth = try AuthData(username: "dominik")
-        let client = try await SSHClient(host: "mcgraw.rm.cab", port: 54245, auth: auth.sshAuth, delegate: delegate)
-        let (code, text) = try await client.execute("ps -u dominik")
+        let remoteManager = try await RemoteManager(username: username, host: host, targetProcessName: targetProcessName, port: port)
     
-        print(text)
-        print("process exited: \(code)")
+        await MainActor.run {
+          // Create and setup status bar item ('button in status bar to toggle popover')
+          let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+          if let button = statusBarItem.button {
+            // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
+            button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "Open SSHPeeper's menubar popover")
+            button.action = #selector(togglePopover(_:))
+          }
+          self.statusBarItem = statusBarItem
+          
+          // Create and setup popover ('content ui')
+          let popover = NSPopover()
+          popover.behavior = .transient
+          popover.contentSize = NSSize(width: 400, height: 400)
+          popover.contentViewController = NSHostingController(rootView: RemoteDataScreen(remoteManager: remoteManager))
+          self.popover = popover
+        }
       } catch {
-        print("Received: \(error.localizedDescription)")
+        // TODO: properly handle this by displaying an error alert or something
+        return
       }
     }
-
-//    // Create and setup status bar item ('button in status bar to toggle popover')
-//    let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-//    if let button = statusBarItem.button {
-//      // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
-//      button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "SSHPeeper")
-//      button.action = #selector(togglePopover(_:))
-//    }
-//    self.statusBarItem = statusBarItem
-//
-//    // Create and setup popover ('content ui')
-//    let popover = NSPopover()
-//    popover.behavior = .transient
-//    popover.contentSize = NSSize(width: 400, height: 400)
-//    popover.contentViewController = NSHostingController(rootView: ContentView())
-//    self.popover = popover
   }
   
-  @objc func togglePopover(_ sender: AnyObject?) {
+  @objc private func togglePopover(_ sender: AnyObject?) {
     guard let popover = self.popover, let button = self.statusBarItem?.button, !popover.isShown else {
       return
     }
