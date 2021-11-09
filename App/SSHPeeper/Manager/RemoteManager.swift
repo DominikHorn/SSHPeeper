@@ -10,6 +10,7 @@ import SSHClient
 import SwiftUI
 import NIOPosix
 import Combine
+import DequeModule
 
 @MainActor
 class RemoteManager: ObservableObject {
@@ -19,6 +20,9 @@ class RemoteManager: ObservableObject {
   @Published var error: RemoteError? = nil
   
   @Published var refreshing = false
+  
+  @Published var processRuntimeInSeconds = 0
+  @Published var processStats = Deque<ProcessStats>(repeating: .init(), count: 100)
   
   /* TODO: automate public key retrieval: (currently manual using)
    ```swift
@@ -62,14 +66,27 @@ class RemoteManager: ObservableObject {
     refreshing = true
     do {
       // TODO(dominik): don't hardcode requests
-      let (code, psOut) = try await client.execute("ps -u \(auth.username) | grep \(targetProcessName)")
+      let (code, psOut) = try await client.execute("ps -u \(auth.username) -o %cpu,%mem,times,comm | grep \(targetProcessName)")
+      refreshing = false
       
       self.isUp = code == 0
       self.output = psOut
+      
+      guard code == 0,
+              let lineSubstr = psOut.split(separator: "\n").first else { return }
+      let stats = String(lineSubstr).split(separator: " ")
+      guard stats.count >= 3,
+            let cpuRaw = Float(String(stats[0])),
+            let memRaw = Float(String(stats[1])),
+            let runtimeRaw = Int(String(stats[2])) else { return }
+      
+      processRuntimeInSeconds = runtimeRaw
+      _ = processStats.popFirst()
+      processStats.append(.init(cpuPercent: cpuRaw / 100.0, memoryPercent: memRaw / 100.0))
     } catch {
+      refreshing = false
       display(error: error)
     }
-    refreshing = false
   }
   
   internal func display(banner: String) {

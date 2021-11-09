@@ -13,6 +13,8 @@
 		B44BFFE0273842DE000E6366 /* SSHClient in Frameworks */ = {isa = PBXBuildFile; productRef = B44BFFDF273842DE000E6366 /* SSHClient */; };
 		B44BFFED273857DC000E6366 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44BFFEC273857DC000E6366 /* AuthData.swift */; };
 		B4871A13273B198A0013CBB2 /* StatusBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A12273B198A0013CBB2 /* StatusBarItem.swift */; };
+		B4871A15273B2D090013CBB2 /* ProcessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A14273B2D080013CBB2 /* ProcessStats.swift */; };
+		B4871A18273B2F140013CBB2 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = B4871A17273B2F140013CBB2 /* DequeModule */; };
 		B4952DC3273AE1CD00C3EB84 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */; };
 		B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */; };
 		B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */; };
@@ -52,6 +54,7 @@
 		B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKeychainStoreable.swift; sourceTree = "<group>"; };
 		B44BFFEC273857DC000E6366 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		B4871A12273B198A0013CBB2 /* StatusBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarItem.swift; sourceTree = "<group>"; };
+		B4871A14273B2D080013CBB2 /* ProcessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStats.swift; sourceTree = "<group>"; };
 		B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowIdentifier.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 			files = (
 				B44BFFE0273842DE000E6366 /* SSHClient in Frameworks */,
 				B4C0C7F1273694D9007C3BBD /* SFSafeSymbols in Frameworks */,
+				B4871A18273B2F140013CBB2 /* DequeModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 				B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */,
 				B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */,
 				B49BF0FE273B13BD00B36329 /* RefreshRate.swift */,
+				B4871A14273B2D080013CBB2 /* ProcessStats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			packageProductDependencies = (
 				B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */,
 				B44BFFDF273842DE000E6366 /* SSHClient */,
+				B4871A17273B2F140013CBB2 /* DequeModule */,
 			);
 			productName = SSHPeeper;
 			productReference = B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */;
@@ -334,6 +340,7 @@
 			mainGroup = B4C0C7B5273693DB007C3BBD;
 			packageReferences = (
 				B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = B4C0C7BF273693DB007C3BBD /* Products */;
 			projectDirPath = "";
@@ -382,6 +389,7 @@
 				B433A08C27393DD5003F89F8 /* AuthData+Keychain.swift in Sources */,
 				B4C0C7EE27369464007C3BBD /* AppDelegate.swift in Sources */,
 				B4C0C7F72736E722007C3BBD /* RemoteManager.swift in Sources */,
+				B4871A15273B2D090013CBB2 /* ProcessStats.swift in Sources */,
 				B433A08E27393E0F003F89F8 /* NativeKeychainStoreable.swift in Sources */,
 				B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */,
 				B44BFFED273857DC000E6366 /* AuthData.swift in Sources */,
@@ -735,6 +743,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 		B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/piknotech/SFSafeSymbols";
@@ -749,6 +765,11 @@
 		B44BFFDF273842DE000E6366 /* SSHClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SSHClient;
+		};
+		B4871A17273B2F140013CBB2 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
 		};
 		B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
