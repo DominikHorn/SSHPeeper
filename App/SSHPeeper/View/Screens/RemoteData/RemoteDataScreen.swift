@@ -43,26 +43,26 @@ struct RemoteDataScreen: View {
       } else {
         VStack {
           HStack {
-            Button("Refresh") {
-              Task {
-                await remoteManager.refresh()
-              }
+            Spacer()
+            
+            Button(action: { Task { await remoteManager.refresh() } }) {
+              Label("Refresh", systemSymbol: .arrowTriangle2Circlepath)
             }
             
-            Button("Settings") {
+            Button(action: {
               if let url = WindowIdentifier.settings.url {
                 openURL(url)
               }
+            }) {
+              Label("Settings", systemSymbol: .gear)
             }
           }
           
-          HStack {
-            Image(systemSymbol: remoteManager.isUp ? .checkmarkSeal : .xmarkSeal)
-            Text("Process is\(remoteManager.isUp ? "" : " not") running")
-          }
+          Spacer()
         }
       }
     }
+    .padding()
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
   }
 }

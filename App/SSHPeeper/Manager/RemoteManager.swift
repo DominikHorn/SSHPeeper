@@ -12,7 +12,7 @@ import NIOPosix
 
 @MainActor
 class RemoteManager: ObservableObject {
-  @Published var isUp = false
+  @Published var isUp: Bool? = nil
   @Published var output: String? = nil
   @Published var bannerMessage: String? = nil
   @Published var error: RemoteError? = nil
