@@ -9,6 +9,8 @@ import Foundation
 import AppKit
 import SwiftUI
 import SFSafeSymbols
+import SSHClient
+import Crypto
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   private var popover: NSPopover?
@@ -19,22 +21,56 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if let window = NSApplication.shared.windows.first {
       window.close()
     }
+
+    // TODO: to get public key that can be added to server, write pem & convert using
     
-    // Create and setup status bar item ('button in status bar to toggle popover')
-    let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    if let button = statusBarItem.button {
-      // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
-      button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "SSHPeeper")
-      button.action = #selector(togglePopover(_:))
+    /* ```swift
+        print(auth.privateKey.publicKey.pemRepresentation)
+        ssh-keygen -i -m PKCS8 -f public-key.pem
+       ```
+     */
+    
+    // TODO: tmp
+    class SSHDelegate: SSHClientDelegate {
+      func onBanner(message: String) {
+        // TODO: proper handling
+        print(message)
+      }
+      
+      func onError(error: Error) {
+        print(error)
+      }
     }
-    self.statusBarItem = statusBarItem
     
-    // Create and setup popover ('content ui')
-    let popover = NSPopover()
-    popover.behavior = .transient
-    popover.contentSize = NSSize(width: 400, height: 400)
-    popover.contentViewController = NSHostingController(rootView: ContentView())
-    self.popover = popover
+    Task {
+      do {
+        let delegate = SSHDelegate()
+        let auth = try AuthData(username: "dominik")
+        let client = try await SSHClient(host: "mcgraw.rm.cab", port: 54245, auth: auth.sshAuth, delegate: delegate)
+        let (code, text) = try await client.execute("ps -u dominik")
+    
+        print(text)
+        print("process exited: \(code)")
+      } catch {
+        print("Received: \(error.localizedDescription)")
+      }
+    }
+
+//    // Create and setup status bar item ('button in status bar to toggle popover')
+//    let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+//    if let button = statusBarItem.button {
+//      // TODO(dominik): entirely custom view [https://stackoverflow.com/questions/60036391/how-to-draw-custom-view-in-nsstatusbar]
+//      button.image = NSImage(systemSymbol: .terminal, accessibilityDescription: "SSHPeeper")
+//      button.action = #selector(togglePopover(_:))
+//    }
+//    self.statusBarItem = statusBarItem
+//
+//    // Create and setup popover ('content ui')
+//    let popover = NSPopover()
+//    popover.behavior = .transient
+//    popover.contentSize = NSSize(width: 400, height: 400)
+//    popover.contentViewController = NSHostingController(rootView: ContentView())
+//    self.popover = popover
   }
   
   @objc func togglePopover(_ sender: AnyObject?) {
