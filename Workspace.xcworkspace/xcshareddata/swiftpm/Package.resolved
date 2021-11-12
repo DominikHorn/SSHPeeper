@@ -45,6 +45,15 @@
           "revision": "6aa9347d9bc5bbfe6a84983aec955c17ffea96ef",
           "version": "2.33.0"
         }
+      },
+      {
+        "package": "swift-nio-ssh",
+        "repositoryURL": "https://github.com/apple/swift-nio-ssh",
+        "state": {
+          "branch": "main",
+          "revision": "9d9a769e438bd2a092fee0bed3e04e0565673976",
+          "version": null
+        }
       }
     ]
   },
