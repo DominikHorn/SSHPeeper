@@ -1,3 +1,0 @@
-[submodule "swift-nio-ssh"]
-	path = swift-nio-ssh
-	url = git@github.com:DominikHorn/swift-nio-ssh.git
