@@ -17,7 +17,8 @@ let package = Package(
             targets: ["SSHClient"]),
     ],
     dependencies: [
-      .package(url: "git@github.com:DominikHorn/swift-nio-ssh.git", branch: "feature/userauth-banners")
+        // TODO(dominik): bind to version once new version is released
+        .package(url: "https://github.com/apple/swift-nio-ssh", branch: "main")
     ],
     targets: [
         .target(
