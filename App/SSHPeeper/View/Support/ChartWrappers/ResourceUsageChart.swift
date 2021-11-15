@@ -7,9 +7,11 @@
 
 import Charts
 import SwiftUI
+import DequeModule
 
-struct LineChart: NSViewRepresentable {
-  let entries: [ChartDataEntry]
+struct ResourceUsageChart: NSViewRepresentable {
+  let data: Deque<ProcessStats>
+  
   let yValueFormatter: AxisValueFormatter = PercentageFormatter()
   let xValueFormatter: AxisValueFormatter = DateValueFormatter()
   
@@ -19,22 +21,32 @@ struct LineChart: NSViewRepresentable {
   
   func updateNSView(_ nsView: LineChartView, context: Context) {
     // MARK: dataset
-    let dataset = LineChartDataSet(entries: entries)
-    dataset.mode = .linear
-    dataset.lineWidth = 5
-    dataset.drawCirclesEnabled = false
-    dataset.drawValuesEnabled = false
-    nsView.data = LineChartData(dataSet: dataset)
+    // TODO: localize
+    let memUsageDS = LineChartDataSet(entries: data.map { .init(x: $0.timestamp.timeIntervalSinceReferenceDate, y: $0.memoryPercent)}, label: "Memory Usage")
+    memUsageDS.mode = .linear
+    memUsageDS.lineWidth = 3
+    memUsageDS.drawCirclesEnabled = false
+    
+    let cpuUsageDS = LineChartDataSet(entries: data.map { .init(x: $0.timestamp.timeIntervalSinceReferenceDate, y: $0.cpuPercent)}, label: "CPU Usage")
+    cpuUsageDS.mode = .linear
+    cpuUsageDS.lineWidth = 3
+    cpuUsageDS.drawCirclesEnabled = false
+    cpuUsageDS.colors = [.orange]
     
     // MARK: general view
     nsView.xAxis.drawGridLinesEnabled = false
     nsView.xAxis.drawLabelsEnabled = true
     nsView.xAxis.labelPosition = .bottom
     nsView.xAxis.labelFont = .labelFont(ofSize: 14)
+    nsView.xAxis.labelCount = 3
     nsView.xAxis.valueFormatter = xValueFormatter
-    nsView.xAxis.labelCount = 6
     
-    nsView.legend.enabled = false
+    nsView.legend.enabled = true
+    nsView.legend.font = .boldSystemFont(ofSize: 16)
+    nsView.legend.entries.forEach {
+      $0.form = .line
+    }
+    nsView.legend.xEntrySpace = 10
     
     nsView.leftAxis.drawLabelsEnabled = true
     nsView.leftAxis.labelFont = .labelFont(ofSize: 14)
@@ -43,10 +55,13 @@ struct LineChart: NSViewRepresentable {
     nsView.rightAxis.drawLabelsEnabled = false
     nsView.rightAxis.drawGridLinesEnabled = false
     nsView.rightAxis.drawAxisLineEnabled = false
+    
+    // MARK: update data
+    nsView.data = LineChartData(dataSets: [memUsageDS, cpuUsageDS])
   }
 }
 
-extension LineChart {
+extension ResourceUsageChart {
   class DateValueFormatter: AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
       let formatter = DateFormatter()
@@ -58,19 +73,7 @@ extension LineChart {
   
   class PercentageFormatter: AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-      String(format: "%.0f %%", value * 100)
+      String(format: "%.1f %%", value * 100)
     }
-  }
-}
-
-struct LineChart_Previews: PreviewProvider {
-  static var previews: some View {
-    LineChart(entries: [
-      .init(x: 10, y: 0.2),
-      .init(x: 2000, y: 0.4),
-      .init(x: 5000, y: 0.99),
-      .init(x: 10000, y: 0.99),
-      .init(x: 20000, y: 0.7),
-    ])
   }
 }
