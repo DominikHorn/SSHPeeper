@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             view.translatesAutoresizingMaskIntoConstraints = false
             button.addSubview(view)
             view.widthAnchor.constraint(equalToConstant: length).isActive = true
-            view.heightAnchor.constraint(equalToConstant: NSApplication.shared.mainMenu?.menuBarHeight ?? 22).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 22).isActive = true
           }
           
           // Create and setup popover ('content ui')

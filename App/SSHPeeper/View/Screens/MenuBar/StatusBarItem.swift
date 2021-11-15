@@ -13,27 +13,23 @@ struct StatusBarItem: View {
   @ObservedObject var remoteManager: RemoteManager
   
   var body: some View {
-    Group {
+    HStack(alignment: .center) {
       if let isUp = remoteManager.isUp {
-        HStack {
-          Image(systemSymbol: isUp ? .checkmarkCircle : .bolt)
-            .resizable()
-            .scaledToFit()
-            .frame(maxHeight: 15)
-          
-          Text(isUp ? "Running" : "Stopped")
-        }
+        Image(systemSymbol: isUp ? .checkmarkCircle : .bolt)
+          .resizable()
+          .scaledToFit()
+          .frame(width: 15, height: 15)
+        
+        Text(isUp ? "Running" : "Stopped")
       } else {
-        HStack(spacing: 5) {
-          ProgressView()
-            .progressViewStyle(CircularProgressViewStyle())
-            .scaleEffect(0.5)
-            .frame(width: 20, height: 20)
-          Text("Loading")
-        }
+        ProgressView()
+          .progressViewStyle(CircularProgressViewStyle())
+          .scaleEffect(0.4)
+          .frame(width: 15, height: 15)
+        
+        Text("Loading")
       }
     }
-    .padding(.bottom, 2)
   }
 }
 
