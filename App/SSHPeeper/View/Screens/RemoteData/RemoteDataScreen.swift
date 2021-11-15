@@ -78,7 +78,7 @@ struct RemoteDataScreen: View {
           Spacer()
           
           HStack {
-            CPUUsageView(stats: $remoteManager.processStats)
+//            CPUUsageView(stats: $remoteManager.processStats)
             MemUsageView(stats: $remoteManager.processStats)
           }
           

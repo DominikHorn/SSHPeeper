@@ -15,7 +15,6 @@
 		B4871A13273B198A0013CBB2 /* StatusBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A12273B198A0013CBB2 /* StatusBarItem.swift */; };
 		B4871A15273B2D090013CBB2 /* ProcessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A14273B2D080013CBB2 /* ProcessStats.swift */; };
 		B4871A18273B2F140013CBB2 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = B4871A17273B2F140013CBB2 /* DequeModule */; };
-		B4871A1B273B337B0013CBB2 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = B4871A1A273B337B0013CBB2 /* SwiftUICharts */; };
 		B4871A1D273B344A0013CBB2 /* MemUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A1C273B344A0013CBB2 /* MemUsageView.swift */; };
 		B4871A1F273B3CC00013CBB2 /* CPUUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A1E273B3CC00013CBB2 /* CPUUsageView.swift */; };
 		B4871A21273C04F80013CBB2 /* AuthData+PublicKeyExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A20273C04F80013CBB2 /* AuthData+PublicKeyExport.swift */; };
@@ -24,6 +23,8 @@
 		B498146727419B9E00EBF288 /* ASN1Parser in Frameworks */ = {isa = PBXBuildFile; productRef = B498146627419B9E00EBF288 /* ASN1Parser */; };
 		B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */; };
 		B49BF0FF273B13BD00B36329 /* RefreshRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FE273B13BD00B36329 /* RefreshRate.swift */; };
+		B4B5EF7C2743064900CBEAE8 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = B4B5EF7B2743064900CBEAE8 /* Charts */; };
+		B4B5EF7F2743078100CBEAE8 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B5EF7E2743078100CBEAE8 /* LineChart.swift */; };
 		B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */; };
 		B4C0C7C4273693DB007C3BBD /* RemoteDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C3273693DB007C3BBD /* RemoteDataScreen.swift */; };
 		B4C0C7C6273693DE007C3BBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C0C7C5273693DE007C3BBD /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowIdentifier.swift; sourceTree = "<group>"; };
 		B49BF0FE273B13BD00B36329 /* RefreshRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshRate.swift; sourceTree = "<group>"; };
+		B4B5EF7E2743078100CBEAE8 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHPeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHPeeperApp.swift; sourceTree = "<group>"; };
 		B4C0C7C3273693DB007C3BBD /* RemoteDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataScreen.swift; sourceTree = "<group>"; };
@@ -88,8 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B5EF7C2743064900CBEAE8 /* Charts in Frameworks */,
 				B44BFFE0273842DE000E6366 /* SSHClient in Frameworks */,
-				B4871A1B273B337B0013CBB2 /* SwiftUICharts in Frameworks */,
 				B4C0C7F1273694D9007C3BBD /* SFSafeSymbols in Frameworks */,
 				B4871A18273B2F140013CBB2 /* DequeModule in Frameworks */,
 				B498146727419B9E00EBF288 /* ASN1Parser in Frameworks */,
@@ -155,6 +157,7 @@
 		B49BF0F8273B013900B36329 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				B4B5EF7D274306F000CBEAE8 /* ChartWrappers */,
 				B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */,
 			);
 			path = Support;
@@ -186,6 +189,14 @@
 				B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		B4B5EF7D274306F000CBEAE8 /* ChartWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				B4B5EF7E2743078100CBEAE8 /* LineChart.swift */,
+			);
+			path = ChartWrappers;
 			sourceTree = "<group>";
 		};
 		B4C0C7B5273693DB007C3BBD = {
@@ -278,8 +289,8 @@
 				B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */,
 				B44BFFDF273842DE000E6366 /* SSHClient */,
 				B4871A17273B2F140013CBB2 /* DequeModule */,
-				B4871A1A273B337B0013CBB2 /* SwiftUICharts */,
 				B498146627419B9E00EBF288 /* ASN1Parser */,
+				B4B5EF7B2743064900CBEAE8 /* Charts */,
 			);
 			productName = SSHPeeper;
 			productReference = B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */;
@@ -356,8 +367,8 @@
 			packageReferences = (
 				B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */,
-				B4871A19273B337B0013CBB2 /* XCRemoteSwiftPackageReference "ChartView" */,
 				B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */,
+				B4B5EF7A2743064900CBEAE8 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = B4C0C7BF273693DB007C3BBD /* Products */;
 			projectDirPath = "";
@@ -406,6 +417,7 @@
 				B433A08C27393DD5003F89F8 /* AuthData+Keychain.swift in Sources */,
 				B4C0C7EE27369464007C3BBD /* AppDelegate.swift in Sources */,
 				B4C0C7F72736E722007C3BBD /* RemoteManager.swift in Sources */,
+				B4B5EF7F2743078100CBEAE8 /* LineChart.swift in Sources */,
 				B4871A1F273B3CC00013CBB2 /* CPUUsageView.swift in Sources */,
 				B4871A15273B2D090013CBB2 /* ProcessStats.swift in Sources */,
 				B433A08E27393E0F003F89F8 /* NativeKeychainStoreable.swift in Sources */,
@@ -773,20 +785,20 @@
 				minimumVersion = 0.0.3;
 			};
 		};
-		B4871A19273B337B0013CBB2 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DominikHorn/ASN1Parser";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.0.1;
+			};
+		};
+		B4B5EF7A2743064900CBEAE8 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
 			};
 		};
 		B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
@@ -809,15 +821,15 @@
 			package = B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
 		};
-		B4871A1A273B337B0013CBB2 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4871A19273B337B0013CBB2 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
 		B498146627419B9E00EBF288 /* ASN1Parser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */;
 			productName = ASN1Parser;
+		};
+		B4B5EF7B2743064900CBEAE8 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4B5EF7A2743064900CBEAE8 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 		B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;

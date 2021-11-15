@@ -24,12 +24,6 @@ class RemoteManager: ObservableObject {
   @Published var processRuntimeInSeconds = 0
   @Published var processStats = Deque<ProcessStats>(repeating: .init(), count: 100)
   
-  /* TODO: automate public key retrieval: (currently manual using)
-   ```swift
-   print(auth.privateKey.publicKey.pemRepresentation)
-   ssh-keygen -i -m PKCS8 -f public-key.pem
-   ```
-   */
   private let targetProcessName: String
   private let auth: AuthData
   private var client: SSHClient<RemoteManager>? = nil

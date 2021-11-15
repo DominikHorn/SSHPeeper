@@ -7,12 +7,11 @@
 
 import SwiftUI
 import DequeModule
-import SwiftUICharts
 
 struct CPUUsageView: View {
   @Binding var stats: Deque<ProcessStats>
   
   var body: some View {
-    LineChartView(data: stats.map({ $0.cpuPercent }), title: "CPU %")
+    Text("CP CP CP UUUUUU!!!!")
   }
 }
