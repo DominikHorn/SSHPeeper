@@ -59,7 +59,6 @@ class RemoteManager: ObservableObject {
     
     refreshing = true
     do {
-      // TODO(dominik): don't hardcode requests
       let (code, psOut) = try await client.execute("ps -u \(auth.username) -o %cpu,%mem,times,comm | grep \(targetProcessName)")
       refreshing = false
       

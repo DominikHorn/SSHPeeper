@@ -35,6 +35,12 @@ struct RemoteDataScreen: View {
   
   @ViewBuilder var header: some View {
     HStack {
+      Button(action: { NSApplication.shared.terminate(nil) }) {
+        Label("Quit", systemSymbol: .xmark)
+      }
+      
+      Spacer()
+      
       if remoteManager.refreshing {
         ProgressView()
           .progressViewStyle(CircularProgressViewStyle())
@@ -42,10 +48,8 @@ struct RemoteDataScreen: View {
           .frame(width: 20, height: 20)
       }
       
-      Spacer()
-      
       Button(action: { Task { await remoteManager.refresh() } }) {
-        Label("Refresh", systemSymbol: .arrowTriangle2Circlepath)
+        Image(systemSymbol: .arrowTriangle2Circlepath)
       }
       
       Button(action: {
@@ -77,10 +81,7 @@ struct RemoteDataScreen: View {
           
           Spacer()
           
-          HStack {
-//            CPUUsageView(stats: $remoteManager.processStats)
-            MemUsageView(stats: $remoteManager.processStats)
-          }
+          ResourceUsageChart(data: remoteManager.processStats)
           
           Spacer()
         }
