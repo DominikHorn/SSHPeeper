@@ -27,11 +27,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
           !username.isEmpty,
           let host = UserDefaults.standard.string(forKey: DefaultsKeys.host),
           !host.isEmpty,
-          let targetProcessName = UserDefaults.standard.string(forKey: DefaultsKeys.targetProcessName),
-          let refreshRate = RefreshRate(rawValue: UserDefaults.standard.string(forKey: DefaultsKeys.refreshRate) ?? "")
+          let targetProcessName = UserDefaults.standard.string(forKey: DefaultsKeys.targetProcessName)
     else {
       return
     }
+    // TODO(dominik): don't duplicate this default value
+    let refreshRate = RefreshRate(rawValue: UserDefaults.standard.string(forKey: DefaultsKeys.refreshRate) ?? "") ?? RefreshRate.medium
     let port = UserDefaults.standard.integer(forKey: DefaultsKeys.port)
     
     // Close all settings windows (if exist)

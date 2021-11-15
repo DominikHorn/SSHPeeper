@@ -39,8 +39,8 @@ public actor SSHClient<T: SSHClientDelegate> {
     return try await withCheckedThrowingContinuation { continuation in
       let parent = rootChannel
       let delegate = delegate
+      let exitStatusPromise = rootChannel.eventLoop.makePromise(of: (Int, String).self)
       do {
-        let exitStatusPromise = rootChannel.eventLoop.makePromise(of: (Int, String).self)
         let childChannel: Channel = try parent.pipeline.handler(type: NIOSSHHandler.self).flatMap { sshHandler in
           let promise = parent.eventLoop.makePromise(of: Channel.self)
           sshHandler.createChannel(promise, channelType: .session) { childChannel, channelType in
@@ -57,7 +57,8 @@ public actor SSHClient<T: SSHClientDelegate> {
         let result = try exitStatusPromise.futureResult.wait()
         continuation.resume(returning: result)
       } catch {
-        print(error.localizedDescription)
+        print("Encountered error executing ssh command: \(error.localizedDescription).")
+        exitStatusPromise.fail(error)
         continuation.resume(throwing: error)
       }
     }

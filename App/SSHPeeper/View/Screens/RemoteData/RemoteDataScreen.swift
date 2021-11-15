@@ -33,37 +33,47 @@ struct RemoteDataScreen: View {
     }
   }
   
+  @ViewBuilder var header: some View {
+    HStack {
+      if remoteManager.refreshing {
+        ProgressView()
+          .progressViewStyle(CircularProgressViewStyle())
+          .scaleEffect(0.5)
+          .frame(width: 20, height: 20)
+      }
+      
+      Spacer()
+      
+      Button(action: { Task { await remoteManager.refresh() } }) {
+        Label("Refresh", systemSymbol: .arrowTriangle2Circlepath)
+      }
+      
+      Button(action: {
+        if let url = WindowIdentifier.settings.url {
+          openURL(url)
+        }
+      }) {
+        Label("Settings", systemSymbol: .gear)
+      }
+    }
+  }
+  
   var body: some View {
     Group {
       if let error = remoteManager.error {
-        errorView(error: error)
+        VStack {
+          header
+          errorView(error: error)
+        }
       } else if showBanner, let banner = remoteManager.bannerMessage {
-        Text(banner)
-          .font(.system(size: 13).monospaced())
+        VStack {
+          header
+          Text(banner)
+            .font(.system(size: 13).monospaced())
+        }
       } else {
         VStack {
-          HStack {
-            if remoteManager.refreshing {
-              ProgressView()
-                .progressViewStyle(CircularProgressViewStyle())
-                .scaleEffect(0.5)
-                .frame(width: 20, height: 20)
-            }
-            
-            Spacer()
-            
-            Button(action: { Task { await remoteManager.refresh() } }) {
-              Label("Refresh", systemSymbol: .arrowTriangle2Circlepath)
-            }
-            
-            Button(action: {
-              if let url = WindowIdentifier.settings.url {
-                openURL(url)
-              }
-            }) {
-              Label("Settings", systemSymbol: .gear)
-            }
-          }
+          header
           
           Spacer()
           

@@ -38,7 +38,7 @@ class RemoteManager: ObservableObject {
   
   init(username: String, host: String, targetProcessName: String, refreshRate: RefreshRate, port: Int = 22) throws {
     self.targetProcessName = targetProcessName
-    self.auth = try AuthData(username: username)
+    self.auth = AuthData(username: username)
     
     Task {
       do {

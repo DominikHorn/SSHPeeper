@@ -31,15 +31,44 @@ struct SetupScreen: View {
   
   @ViewBuilder var targetConfigView: some View {
     Form {
-      TextField("Target Process Name:", text: $targetProcessName)
-      
-      Picker("Refresh Rate:", selection: $refreshRate) {
-        Text("High").tag(RefreshRate.high)
-        Text("Medium").tag(RefreshRate.medium)
-        Text("Low").tag(RefreshRate.low)
+      Section {
+        TextField("Target Process Name:", text: $targetProcessName)
+        
+        Picker("Refresh Rate:", selection: $refreshRate) {
+          Text("High").tag(RefreshRate.high)
+          Text("Medium").tag(RefreshRate.medium)
+          Text("Low").tag(RefreshRate.low)
+        }
       }
     }
     .padding()
+  }
+  
+  @ViewBuilder var publicKeyBox: some View {
+    if let publicKey = AuthData.openSSHEncodedPublicKey {
+      VStack {
+        HStack {
+          Text("Public SSH Key:")
+            .bold()
+          
+          Spacer()
+          Button(action: {
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.setString(publicKey, forType: .string)
+          }) {
+            Label("Copy", systemSymbol: .squareAndArrowUp)
+          }
+        }
+        
+        Text(publicKey)
+          .font(.system(size: 13).monospaced())
+          .textSelection(.enabled)
+          .help(publicKey)
+      }
+      .padding()
+      .background(RoundedRectangle(cornerRadius: 5).fill(Color.gray.opacity(0.1)))
+    }
   }
   
   var body: some View {
@@ -48,11 +77,16 @@ struct SetupScreen: View {
         sshAuthView.tabItem {
           Label("SSH Authentication", systemSymbol: .lock)
         }
+        .frame(height: 100)
         
         targetConfigView.tabItem {
           Label("Target Configuration", systemSymbol: .gear)
         }
+        .frame(height: 100)
       }
+      
+      publicKeyBox
+        .layoutPriority(1)
       
       HStack {
         Spacer()
@@ -61,7 +95,7 @@ struct SetupScreen: View {
       }
     }
     .padding()
-    .frame(maxWidth: 512, maxHeight: 256)
+    .frame(width: 500, height: 350)
   }
 }
 

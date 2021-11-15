@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "ASN1Parser",
+        "repositoryURL": "https://github.com/DominikHorn/ASN1Parser",
+        "state": {
+          "branch": null,
+          "revision": "021f34ea1708fc70f17e0dafb061cb40364c9480",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt.git",
+        "state": {
+          "branch": null,
+          "revision": "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+          "version": "5.3.0"
+        }
+      },
+      {
         "package": "SwiftUICharts",
         "repositoryURL": "https://github.com/AppPear/ChartView",
         "state": {

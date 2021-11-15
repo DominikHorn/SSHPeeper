@@ -18,8 +18,10 @@
 		B4871A1B273B337B0013CBB2 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = B4871A1A273B337B0013CBB2 /* SwiftUICharts */; };
 		B4871A1D273B344A0013CBB2 /* MemUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A1C273B344A0013CBB2 /* MemUsageView.swift */; };
 		B4871A1F273B3CC00013CBB2 /* CPUUsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A1E273B3CC00013CBB2 /* CPUUsageView.swift */; };
+		B4871A21273C04F80013CBB2 /* AuthData+PublicKeyExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4871A20273C04F80013CBB2 /* AuthData+PublicKeyExport.swift */; };
 		B4952DC3273AE1CD00C3EB84 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */; };
 		B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */; };
+		B498146727419B9E00EBF288 /* ASN1Parser in Frameworks */ = {isa = PBXBuildFile; productRef = B498146627419B9E00EBF288 /* ASN1Parser */; };
 		B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */; };
 		B49BF0FF273B13BD00B36329 /* RefreshRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49BF0FE273B13BD00B36329 /* RefreshRate.swift */; };
 		B4C0C7C2273693DB007C3BBD /* SSHPeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C0C7C1273693DB007C3BBD /* SSHPeeperApp.swift */; };
@@ -60,6 +62,7 @@
 		B4871A14273B2D080013CBB2 /* ProcessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStats.swift; sourceTree = "<group>"; };
 		B4871A1C273B344A0013CBB2 /* MemUsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemUsageView.swift; sourceTree = "<group>"; };
 		B4871A1E273B3CC00013CBB2 /* CPUUsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUUsageView.swift; sourceTree = "<group>"; };
+		B4871A20273C04F80013CBB2 /* AuthData+PublicKeyExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthData+PublicKeyExport.swift"; sourceTree = "<group>"; };
 		B4952DC2273AE1CD00C3EB84 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
 		B49BF0FC273B018B00B36329 /* WindowIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowIdentifier.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 				B4871A1B273B337B0013CBB2 /* SwiftUICharts in Frameworks */,
 				B4C0C7F1273694D9007C3BBD /* SFSafeSymbols in Frameworks */,
 				B4871A18273B2F140013CBB2 /* DequeModule in Frameworks */,
+				B498146727419B9E00EBF288 /* ASN1Parser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +125,7 @@
 			children = (
 				B44BFFEC273857DC000E6366 /* AuthData.swift */,
 				B433A08B27393DD5003F89F8 /* AuthData+Keychain.swift */,
+				B4871A20273C04F80013CBB2 /* AuthData+PublicKeyExport.swift */,
 				B433A08927393B2C003F89F8 /* GenericPasswordConvertible.swift */,
 				B433A08D27393E0F003F89F8 /* NativeKeychainStoreable.swift */,
 				B4952DC5273AE26500C3EB84 /* DefaultsKeys.swift */,
@@ -274,6 +279,7 @@
 				B44BFFDF273842DE000E6366 /* SSHClient */,
 				B4871A17273B2F140013CBB2 /* DequeModule */,
 				B4871A1A273B337B0013CBB2 /* SwiftUICharts */,
+				B498146627419B9E00EBF288 /* ASN1Parser */,
 			);
 			productName = SSHPeeper;
 			productReference = B4C0C7BE273693DB007C3BBD /* SSHPeeper.app */;
@@ -351,6 +357,7 @@
 				B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				B4871A16273B2F140013CBB2 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				B4871A19273B337B0013CBB2 /* XCRemoteSwiftPackageReference "ChartView" */,
+				B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */,
 			);
 			productRefGroup = B4C0C7BF273693DB007C3BBD /* Products */;
 			projectDirPath = "";
@@ -402,6 +409,7 @@
 				B4871A1F273B3CC00013CBB2 /* CPUUsageView.swift in Sources */,
 				B4871A15273B2D090013CBB2 /* ProcessStats.swift in Sources */,
 				B433A08E27393E0F003F89F8 /* NativeKeychainStoreable.swift in Sources */,
+				B4871A21273C04F80013CBB2 /* AuthData+PublicKeyExport.swift in Sources */,
 				B49BF0FD273B018B00B36329 /* WindowIdentifier.swift in Sources */,
 				B44BFFED273857DC000E6366 /* AuthData.swift in Sources */,
 				B4952DC6273AE26500C3EB84 /* DefaultsKeys.swift in Sources */,
@@ -771,6 +779,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DominikHorn/ASN1Parser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 		B4C0C7EF273694D9007C3BBD /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/piknotech/SFSafeSymbols";
@@ -795,6 +811,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B4871A19273B337B0013CBB2 /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		B498146627419B9E00EBF288 /* ASN1Parser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B498146527419B9E00EBF288 /* XCRemoteSwiftPackageReference "ASN1Parser" */;
+			productName = ASN1Parser;
 		};
 		B4C0C7F0273694D9007C3BBD /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;

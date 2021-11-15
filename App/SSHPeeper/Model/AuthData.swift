@@ -9,23 +9,23 @@ import Foundation
 import Crypto
 import SSHClient
 
-class AuthData {
+struct AuthData {
+  // Remember to change +PublicKeyExport when touching this value
   typealias PrivateKey = P256.Signing.PrivateKey
-  let privateKey: PrivateKey
-  let username: String
+ 
+  var username: String
+  
+  static var privateKey: PrivateKey = {
+    if let key: PrivateKey = try? AuthData.loadKey() {
+      return key
+    } else {
+      let key = PrivateKey()
+      try? AuthData.store(key: key)
+      return key
+    }
+  }()
   
   var sshAuth: Auth {
-    PrivateKeyAuth(username: username, key: .init(p256Key: privateKey))
-  }
-  
-  init(username: String) throws {
-    self.username = username
-    // Load privateKey
-    if let key: AuthData.PrivateKey = try Self.loadKey() {
-      self.privateKey = key
-    } else {
-      self.privateKey = .init()
-      try Self.store(key: privateKey)
-    }
+    PrivateKeyAuth(username: username, key: .init(p256Key: Self.privateKey))
   }
 }
